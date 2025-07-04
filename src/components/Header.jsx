@@ -1,39 +1,30 @@
-import { useMemo } from "react";
-
-const Header = ({cart, removeFromCart, increaseQuantity, decreaseQuantity, clearCart}) => {
-
-    // State derivado
-    const isCartEmpty = useMemo( () => cart.length === 0, [cart] )
-
-    const totalMountCart = useMemo( () => {
-        return cart.reduce((total, item) => total + (item.price * item.quantity), 0);
-    }, [cart] )
+const Header = ({cart, removeFromCart, increaseQuantity, decreaseQuantity, clearCart, isCartEmpty, totalMountCart}) => {
 
     return (
-        <header class="py-5 header">
-          <div class="container-xl">
-              <div class="row justify-content-center justify-content-md-between">
-                  <div class="col-8 col-md-3">
+        <header className="py-5 header">
+          <div className="container-xl">
+              <div className="row justify-content-center justify-content-md-between">
+                  <div className="col-8 col-md-3">
                       <a href="index.html">
-                          <img class="img-fluid" src="./public/img/logo.svg" alt="imagen logo" />
+                          <img className="img-fluid" src="/img/logo.svg" alt="imagen logo" />
                       </a>
                   </div>
-                  <nav class="col-md-6 a mt-5 d-flex align-items-start justify-content-end">
+                  <nav className="col-md-6 a mt-5 d-flex align-items-start justify-content-end">
                       <div 
-                          class="carrito"
+                          className="carrito"
                       >
-                          <img class="img-fluid" src="./public/img/carrito.png" alt="imagen carrito" />
+                          <img className="img-fluid" src="/img/carrito.png" alt="imagen carrito" />
 
-                          <div id="carrito" class="bg-white p-3">
+                          <div id="carrito" className="bg-white p-3">
                               
 
                               { 
                                 isCartEmpty ? 
                                     (
-                                        <p class="text-center">No hay elementos en el carrito</p>
+                                        <p className="text-center">No hay elementos en el carrito</p>
                                     ) :
                                     (
-                                        <table class="w-100 table">
+                                        <table className="w-100 table">
                                             <thead>
                                                 <tr>
                                                     <th>Imagen</th>
@@ -47,16 +38,16 @@ const Header = ({cart, removeFromCart, increaseQuantity, decreaseQuantity, clear
                                                 {cart.map(item => (
                                                     <tr key={item.id}>
                                                         <td>
-                                                            <img class="img-fluid" src={`/img/${item.image}.jpg`} alt="imagen guitarra" />
+                                                            <img className="img-fluid" src={`/img/${item.image}.jpg`} alt="imagen guitarra" />
                                                         </td>
                                                         <td>{item.name}</td>
-                                                        <td class="fw-bold">
+                                                        <td className="fw-bold">
                                                                 ${item.price}
                                                         </td>
-                                                        <td class="flex align-items-start gap-4">
+                                                        <td className="flex align-items-start gap-4">
                                                             <button
                                                                 type="button"
-                                                                class="btn btn-dark"
+                                                                className="btn btn-dark"
                                                                 onClick={() => decreaseQuantity(item.id)}
                                                             >
                                                                 -
@@ -64,7 +55,7 @@ const Header = ({cart, removeFromCart, increaseQuantity, decreaseQuantity, clear
                                                                 {item.quantity}
                                                             <button
                                                                 type="button"
-                                                                class="btn btn-dark"
+                                                                className="btn btn-dark"
                                                                 onClick={() => increaseQuantity(item.id)}
                                                             >
                                                                 +
@@ -72,7 +63,7 @@ const Header = ({cart, removeFromCart, increaseQuantity, decreaseQuantity, clear
                                                         </td>
                                                         <td>
                                                             <button
-                                                                class="btn btn-danger"
+                                                                className="btn btn-danger"
                                                                 type="button"
                                                                 onClick={() => removeFromCart(item.id)}
                                                             >
@@ -87,8 +78,8 @@ const Header = ({cart, removeFromCart, increaseQuantity, decreaseQuantity, clear
                                     )
                                 }
 
-                                <p class="text-end">Total pagar: <span class="fw-bold">${totalMountCart}</span></p>
-                                <button class="btn btn-dark w-100 mt-3 p-2" onClick={clearCart}>Vaciar Carrito</button>
+                                <p className="text-end">Total pagar: <span className="fw-bold">${totalMountCart}</span></p>
+                                <button className="btn btn-dark w-100 mt-3 p-2" onClick={clearCart}>Vaciar Carrito</button>
                           </div>
                       </div>
                   </nav>
